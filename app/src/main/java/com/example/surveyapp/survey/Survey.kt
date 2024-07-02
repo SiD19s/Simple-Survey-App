@@ -10,10 +10,10 @@ import com.example.surveyapp.R
 import com.example.surveyapp.questions.DateQuestion
 import com.example.surveyapp.questions.MultipleChoiceQuestionPreview
 import com.example.surveyapp.questions.MultiplechiceQuestion
+import com.example.surveyapp.questions.Outfits
 import com.example.surveyapp.questions.SingleChoiceQuestions
 import com.example.surveyapp.questions.SliderQuestion
 import com.example.surveyapp.questions.SliderQuestionPreview
-import com.example.surveyapp.questions.Superhero
 import com.example.surveyapp.questions.photoQuestion
 
 @Composable
@@ -43,19 +43,21 @@ fun FreeTimeQuestions(
 }
 
 @Composable
-fun SuperHeroQuestion(
-    selectedAnswer: Superhero?,
-    onOptionSelected:(Superhero)-> Unit,
+fun PickYourStyleQuestion(
+    selectedAnswer: Outfits?,
+    onOptionSelected:(Outfits)-> Unit,
     modifier: Modifier = Modifier
 ){
     SingleChoiceQuestions(
-        titleResource = R.string.pick_superhero,
+        titleResource = R.string.PickYourStyle,
         DirectionResource = R.string.select_one,
         possibleAns = listOf(
-            Superhero(R.string.spiderman,R.drawable.spiderman),
-            Superhero(R.string.IronMan,R.drawable.ironman),
-            Superhero(R.string.Batman,R.drawable.batman),
-            Superhero(R.string.bluebeetle,R.drawable.bluebettle),
+            Outfits(R.string.AcubiFashion,R.drawable.acubi_fashion),
+            Outfits(R.string.Cyberpunk,R.drawable.cyberpunk),
+            Outfits(R.string.Faitycore,R.drawable.fairycore),
+            Outfits(R.string.Minimilist,R.drawable.minimilist),
+            Outfits(R.string.OldMoney,R.drawable.old_money),
+            Outfits(R.string.Street,R.drawable.street_style)
         ) ,
         selectedAns = selectedAnswer ,
         onOptionSelected = onOptionSelected,
@@ -64,13 +66,13 @@ fun SuperHeroQuestion(
 }
 
 @Composable
-fun TakeawayQuestion(
+fun LastTimeQuestion(
     dateInMillis: Long?,
     modifier: Modifier = Modifier,
     onClick: () -> Unit,
 ){
     DateQuestion(
-        titleResourcesID = R.string.takeaway ,
+        titleResourcesID = R.string.LastTime ,
         directionResourcesID = R.string.select_date,
         dateInMillis = dateInMillis,
         modifier = modifier,
@@ -105,7 +107,7 @@ fun TakeSelfieQuestion(
 ){
     photoQuestion(
         titleResourcesId = R.string.selfie_skills,
-        ImageUri = ImageUri ,
+        ImageUri = ImageUri,
         getNewImageUri = getNewImageUri,
         onPhotoTaken = onPhotoTaken,
         modifier = modifier

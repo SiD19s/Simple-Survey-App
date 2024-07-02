@@ -32,15 +32,15 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.surveyapp.R
 
-data class Superhero(@StringRes val stringResourceId: Int, @DrawableRes val imageResourceId: Int)
+data class Outfits(@StringRes val stringResourceId: Int, @DrawableRes val imageResourceId: Int)
 
 @Composable
 fun SingleChoiceQuestions(
     @StringRes titleResource:Int,
     @StringRes DirectionResource:Int,
-    possibleAns: List<Superhero>,
-    selectedAns: Superhero?,
-    onOptionSelected: (Superhero) -> Unit,
+    possibleAns: List<Outfits>,
+    selectedAns: Outfits?,
+    onOptionSelected: (Outfits) -> Unit,
     modifier: Modifier = Modifier,
 ){
 
@@ -120,14 +120,16 @@ fun RadioButtionWithImage(
 @Composable
 fun SingleChoiceQuestionPreview() {
     val possibleAnswers = listOf(
-        Superhero(R.string.spiderman, R.drawable.spiderman),
-        Superhero(R.string.IronMan, R.drawable.ironman),
-        Superhero(R.string.Batman, R.drawable.batman),
-        Superhero(R.string.bluebeetle, R.drawable.bluebettle),
+        Outfits(R.string.AcubiFashion,R.drawable.acubi_fashion),
+        Outfits(R.string.Cyberpunk,R.drawable.cyberpunk),
+        Outfits(R.string.Faitycore,R.drawable.fairycore),
+        Outfits(R.string.Minimilist,R.drawable.minimilist),
+        Outfits(R.string.OldMoney,R.drawable.old_money),
+        Outfits(R.string.Street,R.drawable.street_style)
     )
-    var selectedAnswer by remember { mutableStateOf<Superhero?>(null) }
+    var selectedAnswer by remember { mutableStateOf<Outfits?>(null) }
     SingleChoiceQuestions(
-        titleResource = R.string.PickasuperHero,
+        titleResource = R.string.PickYourStyle,
         DirectionResource = R.string.select_one,
         possibleAns = possibleAnswers,
         selectedAns = selectedAnswer,

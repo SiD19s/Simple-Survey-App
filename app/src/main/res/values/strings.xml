@@ -4,8 +4,6 @@
     <string name="IronMan">Ironman</string>
     <string name="Batman">Batman</string>
     <string name="bluebeetle">Bluebeetle</string>
-    <string name="PickasuperHero">Pick a super Hero</string>
-    <string name="app_tagline">Better surveys with Jetpack Compose</string>
     <string name="email">Email</string>
     <string name="password">Password</string>
     <string name="confirm_password">Confirm password</string>
@@ -61,11 +59,25 @@
     <string name="add_photo">ADD PHOTO</string>
     <string name="retake_photo">RETAKE PHOTO</string>
 
-    <string name="survey_result_title">Compose</string>
-    <string name="survey_result_subtitle">Congratulations, you are Compose</string>
-    <string name="survey_result_description">You are a curious developer, always willing to try
-    something new. You want to stay up to date with the trends to Compose is your middle name.</string>
+    <string name="survey_result_title">Remember</string>
+    <string name="survey_result_subtitle">Congratulations, you have a great fashion sense</string>
+    <string name="survey_result_description">You are a curious person, always willing to try
+    something new. We are always here to help you with that.</string>
+
     <string name="strongly_dislike">Strongly\nDislike</string>
     <string name="strongly_like">Strongly\nLike</string>
     <string name="neutral">Neutral</string>
+
+
+    <string name="PickYourStyle">Pick your style</string>
+    <string name="LastTime">We would like to know, when was your most recent shopping trip?</string>
+    <string name="app_tagline">To make fashion enjoyable for all</string>
+
+
+    <string name="AcubiFashion">Acubi</string>
+    <string name="Faitycore">Fairycore</string>
+    <string name="Minimilist">Minimilist</string>
+    <string name="Street">Street</string>
+    <string name="Cyberpunk">Cyberpunk</string>
+    <string name="OldMoney">Old Money</string>
     </resources>

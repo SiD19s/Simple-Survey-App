@@ -17,6 +17,7 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.material.icons.Icons
 import androidx.compose.material3.Icon
+import androidx.compose.material3.LocalContentColor
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Surface
@@ -28,6 +29,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.luminance
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -38,17 +40,21 @@ import coil.request.ImageRequest
 import com.example.surveyapp.R
 
 @Composable
+
 fun photoQuestion(
     @StringRes titleResourcesId: Int,
     ImageUri: Uri?,
     getNewImageUri: () -> Uri,
     onPhotoTaken: (Uri) -> Unit,
     modifier: Modifier = Modifier
-
 ){
+
     val hasPhoto = ImageUri != null
+
     var newImageUri: Uri? by remember {
+
         mutableStateOf(null)
+
     }
     val cameraLauncher = rememberLauncherForActivityResult(
         contract = ActivityResultContracts.TakePicture(),
@@ -58,6 +64,7 @@ fun photoQuestion(
             }
         }
     )
+
     val iconResource = if (hasPhoto) {
         R.drawable.swaphoriz
     } else {
@@ -66,13 +73,12 @@ fun photoQuestion(
 
     QuestionsWrapper(
         Title = titleResourcesId,
-        modifier = Modifier.padding(vertical = 16.dp)
-
+        modifier = modifier
     ) {
         OutlinedButton(
-            onClick = { 
+            onClick = {
                 newImageUri = getNewImageUri()
-                cameraLauncher.launch(ImageUri!!)
+                cameraLauncher.launch(newImageUri!!)
             },
             shape = MaterialTheme.shapes.small,
             contentPadding = PaddingValues()
@@ -83,6 +89,7 @@ fun photoQuestion(
                         model = ImageRequest
                             .Builder(LocalContext.current)
                             .data(ImageUri)
+                            .crossfade(true)
                             .build(),
                         contentDescription = null ,
                         modifier = Modifier
@@ -103,15 +110,18 @@ fun photoQuestion(
                         .fillMaxWidth()
                         .wrapContentSize(Alignment.BottomCenter)
                         .padding(vertical = 26.dp),
+
                     verticalAlignment = Alignment.CenterVertically
+
                 ){
                     Icon(painter = painterResource(id = iconResource), contentDescription = null)
                     Spacer(modifier = Modifier.width(8.dp))
-                    Text(text = stringResource(
-                        id = if(hasPhoto){
+                    Text(
+                        text = stringResource(
+                            id = if(hasPhoto){
                             R.string.retake_photo
                             }else{
-                                R.string.add_photo
+                            R.string.add_photo
                             }
                         )
                     )
@@ -121,11 +131,19 @@ fun photoQuestion(
     }
 }
 
+
 @Composable
+
 fun DefaultPhoto(
-    modifier: Modifier  = Modifier
-){
-    val assetId = R.drawable.ic_selfie_light
+    modifier: Modifier  = Modifier,
+    lightTheme: Boolean = LocalContentColor.current.luminance() < 0.5f,
+    ){
+
+    val assetId = if (lightTheme) {
+        R.drawable.ic_selfie_light
+    } else {
+        R.drawable.ic_selfie_dark
+    }
     Image(painter = painterResource(id =assetId ),modifier = modifier, contentDescription = null)
 }
 

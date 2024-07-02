@@ -11,7 +11,6 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -19,6 +18,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.compose.jetsurvey.util.getDefaultDateInMillis
 import com.example.surveyapp.R
+import com.example.surveyapp.survey.simpleDateFormatPattern
+import com.example.surveyapp.questions.QuestionsWrapper
 import java.text.SimpleDateFormat
 import java.util.Locale
 import java.util.TimeZone
@@ -40,40 +41,37 @@ fun DateQuestion(
     ) {
     // not understood ths part deeply
         // All times are stored in UTC, so generate the display from UTC also
-        val simpleDateFormatPattern = "EEE, MMM d"
         val dateFormat = SimpleDateFormat(simpleDateFormatPattern, Locale.getDefault())
         dateFormat.timeZone = TimeZone.getTimeZone("UTC")
         val dateString = dateFormat.format(dateInMillis ?: getDefaultDateInMillis())
-    Button(
-        onClick = onClick,
-        modifier = Modifier
-            .padding(vertical = 20.dp)
-            .height(54.dp),
-        colors = ButtonDefaults.buttonColors(
-            containerColor = MaterialTheme.colorScheme.surface,
-            contentColor = MaterialTheme.colorScheme.onSurface
-                .copy(alpha = 0.8f),
-        ),
-        shape = MaterialTheme.shapes.small,
-        border = BorderStroke(1.dp,MaterialTheme.colorScheme.onSurface.copy(alpha = 0.12f))
 
-    ) {
-        Text(
-            text = dateString,
+        Button(
+            onClick = onClick,
+            colors = ButtonDefaults.buttonColors(
+                containerColor = MaterialTheme.colorScheme.surface,
+                contentColor = MaterialTheme.colorScheme.onSurface
+                    .copy(alpha = 0.67f),
+            ),
+            shape = MaterialTheme.shapes.small,
             modifier = Modifier
-                .fillMaxWidth()
-                .weight(1.8f)
-        )
-        Icon(
-            imageVector = Icons.Filled.ArrowDropDown,
-            contentDescription =null,
-            modifier = Modifier
-                .fillMaxWidth()
-                .weight(0.2f)
+                .padding(vertical = 20.dp)
+                .height(54.dp),
+            border = BorderStroke(1.dp, MaterialTheme.colorScheme.onSurface.copy(alpha = 0.12f)),
+        ) {
+            Text(
+                text = dateString,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .weight(1.8f)
             )
-
-
-    }
+            Icon(
+                imageVector = Icons.Filled.ArrowDropDown,
+                contentDescription = null,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .weight(0.2f)
+            )
+        }
     }
 }
 

@@ -93,7 +93,8 @@ fun SurveyResultScreen(
                 SurveyResult(
                     title = stringResource(id = R.string.survey_result_title),
                     subTitle = stringResource(id = R.string.survey_result_subtitle),
-                    description = stringResource(id = R.string.survey_result_description)
+                    description = stringResource(id = R.string.survey_result_description),
+                    modifier = modifier
                 )
             },
             bottomBar = {
@@ -228,29 +229,28 @@ fun SurveyBottomBar(
                 .windowInsetsPadding(WindowInsets.systemBars.only(WindowInsetsSides.Horizontal + WindowInsetsSides.Bottom))
                 .padding(horizontal = 16.dp, vertical = 20.dp)
         ) {
-            if (shouldShowPreviousButton){
+            if (shouldShowPreviousButton) {
                 OutlinedButton(
-                    onClick = {onPreviousPressed},
                     modifier = Modifier
                         .weight(1f)
-                        .height(48.dp)
+                        .height(48.dp),
+                    onClick = onPreviousPressed
                 ) {
                     Text(text = stringResource(id = R.string.previous))
                 }
                 Spacer(modifier = Modifier.width(16.dp))
             }
-            if (shouldShowDoneButton){
+            if (shouldShowDoneButton) {
                 Button(
-                    onClick = {onDonePressed},
                     modifier = Modifier
                         .weight(1f)
                         .height(48.dp),
-                    enabled = isNextButtonEnabled
+                    onClick = onDonePressed,
+                    enabled = isNextButtonEnabled,
                 ) {
                     Text(text = stringResource(id = R.string.done))
                 }
-                Spacer(modifier = Modifier.width(16.dp))
-            }else {
+            } else {
                 Button(
                     modifier = Modifier
                         .weight(1f)

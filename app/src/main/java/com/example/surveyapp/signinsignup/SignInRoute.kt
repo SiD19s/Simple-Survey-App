@@ -17,7 +17,7 @@ fun SignInRoute(
             signInViewModel.signIn(email, password,onSignInSubmitted)
         },
         onSignInAsGuest = {
-            signInViewModel.signInAsGuest { onSignInAsGuest }
+            signInViewModel.signInAsGuest(onSignInAsGuest)
         },
         onNavUp = onNavUp,
     )

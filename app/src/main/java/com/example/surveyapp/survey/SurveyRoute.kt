@@ -45,6 +45,7 @@ fun SurveyRoute(
         onNextPressed = { viewModel.onNextPressed() },
         onDonePressed = { viewModel.onDonePressed (onSurveyComplete) }
     ){paddingValues ->
+
         val modifier = Modifier.padding(paddingValues)
 
         AnimatedContent(
@@ -75,7 +76,7 @@ fun SurveyRoute(
                     )
                 }
 
-                SurveyQuestion.SUPERHERO -> SuperHeroQuestion(
+                SurveyQuestion.SUPERHERO -> PickYourStyleQuestion(
                     selectedAnswer = viewModel.superheroResponse,
                     onOptionSelected = viewModel::onSuperheroResponse,
                     modifier = modifier,
@@ -84,7 +85,7 @@ fun SurveyRoute(
                 SurveyQuestion.LAST_TAKEAWAY -> {
                     val supportFragmentManager =
                         LocalContext.current.findActivity().supportFragmentManager
-                    TakeawayQuestion(
+                    LastTimeQuestion(
                         dateInMillis = viewModel.takeawayResponse,
                         onClick = {
                             showTakeawayDatePicker(
